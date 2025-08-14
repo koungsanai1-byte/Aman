@@ -1,13 +1,6 @@
 import React, { useState } from 'react';
 import {
   Home,
-  Settings,
-  BarChart3,
-  Users,
-  FileText,
-  Monitor,
-  ShoppingCart,
-  Cloud,
   Menu,
   ChevronDown,
   ChevronRight
@@ -26,7 +19,7 @@ const SidebarItem = ({ item, sidebarCollapsed, level = 0 }) => {
     // If the item has sub-items, toggle the dropdown state
     if (hasSubItems) {
       setIsOpen(!isOpen);
-    } 
+    }
     // If it's a leaf item (no sub-items) and has a path, navigate
     else if (item.path) {
       navigate(item.path);
@@ -44,13 +37,13 @@ const SidebarItem = ({ item, sidebarCollapsed, level = 0 }) => {
       {/* Menu Item Link/Button */}
       <div
         className={`flex items-center p-3 rounded cursor-pointer transition-colors duration-200
-          ${isActive || isNestedActive ? 'bg-blue-600 text-white' : 'hover:bg-slate-700 text-white'}
+          ${isActive || isNestedActive ? 'bg-blue-600 text-white' : ' text-white'}
           ${level > 0 ? `ml-${4 * level} text-sm` : ''}
           ${sidebarCollapsed ? 'justify-center' : 'justify-between'}`}
         onClick={handleClick}
       >
         <div className="flex items-center">
-          {item.icon && React.createElement(item.icon, { className: `w-5 h-5 ${level > 0 ? 'ml-2' : ''}`})}
+          {item.icon && React.createElement(item.icon, { className: `w-5 h-5 ${level > 0 ? 'ml-2' : ''}` })}
           {!sidebarCollapsed && <span className={`${item.icon ? 'ml-3' : 'ml-6'}`}>{item.label}</span>}
         </div>
 
@@ -86,11 +79,11 @@ const Sidebar = () => {
     {
       key: 'home',
       icon: Home,
-      label: '首页',
+      label: 'ການສະແດງ',
       path: '/dashboard',
     }
   ];
-  
+
   const toggleSidebar = () => {
     setSidebarCollapsed(!sidebarCollapsed);
   };
@@ -101,10 +94,15 @@ const Sidebar = () => {
       <div className={`fixed top-0 left-0 h-screen transition-all duration-300 bg-slate-800 text-white p-4 z-50 overflow-y-auto ${sidebarCollapsed ? 'w-16' : 'w-64'
         }`}>
         <div className="flex items-center mb-8">
-          <div className="w-8 h-8 bg-yellow-500 rounded mr-3 flex items-center justify-center">
-            <span className="text-white font-bold">龙</span>
+          <div className="w-8 h-8  rounded mr-3 flex items-center justify-center">
+            <button
+              onClick={toggleSidebar}
+              className="p-2  rounded"
+            >
+              <Menu className="w-6 h-6 text-white" />
+            </button>
           </div>
-          {!sidebarCollapsed && <span className="font-bold">龙霸门禽</span>}
+          {!sidebarCollapsed && <span className="font-bold">FCF</span>}
         </div>
 
         <nav className="space-y-1">
@@ -123,15 +121,7 @@ const Sidebar = () => {
         } p-6`}>
         {/* Header */}
         <div className="flex items-center justify-between mb-6">
-          <div className="flex items-center space-x-4">
-            <button
-              onClick={toggleSidebar}
-              className="p-2 hover:bg-gray-200 rounded"
-            >
-              <Menu className="w-6 h-6 text-gray-600" />
-            </button>
-            <span className="text-gray-500">首页</span>
-          </div>
+          <div></div>
           <div className="flex items-center space-x-2">
             <button className="px-4 py-2 bg-blue-500 text-white rounded">首页</button>
             <button className="px-4 py-2 text-gray-600 hover:bg-gray-200 rounded">我的Q空间</button>
